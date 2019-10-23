@@ -1,0 +1,36 @@
+<html lang="en">
+
+    <head>
+        <title> title? </title>
+    </head>
+
+    <body>
+        
+        <a href="/">check in</a>
+        | <a href="all.html">view check ins</a>
+        <br/>
+    
+        <script>
+            getData();
+            async function getData()
+            {
+                 const response  = await fetch('/api');
+                 const data = await response.json();
+
+                 for(item of data)
+                 {
+                     const root = document.createElement('div');
+                     const mood = document.createElement('div');
+                     mood.textContent = `moodstuff`;
+                     const geo = document.createElement('div');
+                     geo.textContent = `${item.lat}, ${item.lon}`;
+
+
+                     root.append(mood, geo);
+                     document.body.append(root);
+                 }
+                // console.log(data);
+            }
+            </script>
+    </body>
+</html>
